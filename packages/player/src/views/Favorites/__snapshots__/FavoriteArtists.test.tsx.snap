@@ -16,11 +16,11 @@ exports[`FavoriteArtists view > (Snapshot) renders empty state 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-3 pt-3 sm:px-6 sm:pt-6"
         data-testid="favorite-artists-view"
       >
         <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+          class="mb-3 flex w-full flex-0 flex-row text-center text-2xl font-bold sm:mb-6 sm:text-3xl"
           data-testid="title"
         >
           Favorite artists
@@ -101,11 +101,11 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
       transition="[object Object]"
     >
       <div
-        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+        class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-3 pt-3 sm:px-6 sm:pt-6"
         data-testid="favorite-artists-view"
       >
         <h1
-          class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+          class="mb-3 flex w-full flex-0 flex-row text-center text-2xl font-bold sm:mb-6 sm:text-3xl"
           data-testid="title"
         >
           Favorite artists
@@ -118,11 +118,11 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
             style="scrollbar-width: none;"
           >
             <div
-              class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
+              class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-2 pr-2 pb-4 sm:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] sm:gap-4"
               role="grid"
             >
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                 data-headlessui-state=""
                 data-testid="card"
                 type="button"
@@ -188,7 +188,7 @@ exports[`FavoriteArtists view > (Snapshot) renders with artists 1`] = `
                 </div>
               </button>
               <button
-                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                 data-headlessui-state=""
                 data-testid="card"
                 type="button"

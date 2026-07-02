@@ -95,35 +95,60 @@ pub fn extract_zip(zip_path: PathBuf, dest_path: PathBuf) -> Result<(), String> 
 
 #[command]
 pub async fn download_file(url: String, dest_path: PathBuf) -> Result<(), String> {
-    use std::time::Duration;
-    use tokio::io::AsyncWriteExt;
+    const MAX_REDIRECTS: usize = 10;
+
+    // Build a client whose target host is pinned to a DoH-resolved IPv4, so
+    // reqwest never calls the system resolver (getaddrinfo hangs on Android for
+    // some hosts — see dns.rs). Redirects are followed manually so each hop's
+    // host is re-resolved and re-pinned the same way.
+    async fn client_for(url: &str) -> Result<reqwest::Client, Box<dyn std::error::Error>> {
+        let parsed = reqwest::Url::parse(url)?;
+        let host = parsed.host_str().ok_or("URL has no host")?;
+        let port = parsed
+            .port_or_known_default()
+            .ok_or("URL has no known port")?;
+        let addr = crate::dns::resolve_ipv4(host, port).await?;
+        Ok(crate::dns::client_builder()
+            .resolve(host, addr)
+            .redirect(reqwest::redirect::Policy::none())
+            .build()?)
+    }
 
     async fn inner(url: &str, dest_path: &Path) -> Result<(), Box<dyn std::error::Error>> {
         log::info!("Downloading {} to {:?}", url, dest_path);
 
-        let client = reqwest::Client::builder()
-            .timeout(Duration::from_secs(300))
-            .connect_timeout(Duration::from_secs(30))
-            .build()?;
-
-        let response = client.get(url).send().await?;
+        let mut current_url = url.to_string();
+        let mut client = client_for(&current_url).await?;
+        let mut response = client.get(&current_url).send().await?;
+        let mut hops = 0;
+        while response.status().is_redirection() {
+            let location = response
+                .headers()
+                .get(reqwest::header::LOCATION)
+                .and_then(|value| value.to_str().ok())
+                .ok_or("Redirect response missing Location header")?;
+            current_url = reqwest::Url::parse(&current_url)?
+                .join(location)?
+                .to_string();
+            hops += 1;
+            if hops > MAX_REDIRECTS {
+                return Err("Too many redirects".into());
+            }
+            log::info!("[download] following redirect to {}", current_url);
+            client = client_for(&current_url).await?;
+            response = client.get(&current_url).send().await?;
+        }
 
         if !response.status().is_success() {
             return Err(format!("HTTP error: {}", response.status()).into());
         }
 
+        let bytes = response.bytes().await?;
+
         if let Some(parent) = dest_path.parent() {
             fs::create_dir_all(parent)?;
         }
-
-        let mut file = tokio::fs::File::create(dest_path).await?;
-        let mut stream = response.bytes_stream();
-
-        use futures::StreamExt;
-        while let Some(chunk) = stream.next().await {
-            let chunk = chunk?;
-            file.write_all(&chunk).await?;
-        }
+        tokio::fs::write(dest_path, &bytes).await?;
 
         log::info!("Download complete: {:?}", dest_path);
         Ok(())

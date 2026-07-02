@@ -156,6 +156,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -166,6 +167,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 640px;"
               >
                 <span
                   class="flex items-center"
@@ -176,6 +178,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -186,6 +189,7 @@ exports[`TrackTable > (Snapshot) Basic 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 96px;"
               >
                 <span
                   class="flex items-center"
@@ -564,6 +568,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -574,6 +579,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 640px;"
               >
                 <span
                   class="flex items-center"
@@ -584,6 +590,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -594,6 +601,7 @@ exports[`TrackTable > (Snapshot) DragAndDrop 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 96px;"
               >
                 <span
                   class="flex items-center"
@@ -1125,6 +1133,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -1135,6 +1144,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 640px;"
               >
                 <span
                   class="flex items-center"
@@ -1145,6 +1155,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -1155,6 +1166,7 @@ exports[`TrackTable > (Snapshot) Filtering 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 96px;"
               >
                 <span
                   class="flex items-center"
@@ -1672,6 +1684,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                 <th
                   class="px-2 text-left cursor-pointer"
                   role="columnheader"
+                  style="width: 150px;"
                 >
                   <span
                     class="flex items-center"
@@ -1682,6 +1695,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                 <th
                   class="px-2 text-left cursor-pointer"
                   role="columnheader"
+                  style="width: 640px;"
                 >
                   <span
                     class="flex items-center"
@@ -1692,6 +1706,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                 <th
                   class="px-2 text-left cursor-pointer"
                   role="columnheader"
+                  style="width: 150px;"
                 >
                   <span
                     class="flex items-center"
@@ -1702,6 +1717,7 @@ exports[`TrackTable > (Snapshot) LargeDataset 1`] = `
                 <th
                   class="px-2 text-left cursor-pointer"
                   role="columnheader"
+                  style="width: 96px;"
                 >
                   <span
                     class="flex items-center"
@@ -3300,6 +3316,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -3310,6 +3327,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 640px;"
               >
                 <span
                   class="flex items-center"
@@ -3320,6 +3338,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 150px;"
               >
                 <span
                   class="flex items-center"
@@ -3330,6 +3349,7 @@ exports[`TrackTable > (Snapshot) Toolbar 1`] = `
               <th
                 class="px-2 text-left cursor-pointer"
                 role="columnheader"
+                style="width: 96px;"
               >
                 <span
                   class="flex items-center"

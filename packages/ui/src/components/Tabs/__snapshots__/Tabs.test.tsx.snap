@@ -73,11 +73,11 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
               class="text-foreground"
             >
               <div
-                class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4"
+                class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-2 pr-2 pb-4 sm:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] sm:gap-4"
                 role="grid"
               >
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
@@ -150,7 +150,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
@@ -223,7 +223,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
@@ -296,7 +296,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"
@@ -369,7 +369,7 @@ exports[`Tabs > (Snapshot) renders correctly 1`] = `
                   </div>
                 </button>
                 <button
-                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                  class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                   data-headlessui-state=""
                   data-testid="card"
                   type="button"

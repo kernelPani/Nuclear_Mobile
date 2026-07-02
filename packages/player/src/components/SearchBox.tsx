@@ -2,11 +2,19 @@ import { useRouter } from '@tanstack/react-router';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Input } from '@nuclearplayer/ui';
+import { cn, Input } from '@nuclearplayer/ui';
 
-export const SearchBox: FC = () => {
+type SearchBoxProps = {
+  className?: string;
+  initialQuery?: string;
+};
+
+export const SearchBox: FC<SearchBoxProps> = ({
+  className,
+  initialQuery = '',
+}) => {
   const { t } = useTranslation('search');
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery);
   const router = useRouter();
   const submit = () => {
     const q = query.trim();
@@ -29,7 +37,7 @@ export const SearchBox: FC = () => {
       }}
       placeholder={t('placeholder')}
       tone="secondary"
-      className="h-8"
+      className={cn('h-8', className)}
     />
   );
 };

@@ -1,15 +1,19 @@
 pub mod bridge;
 pub mod commands;
 pub mod discord;
+pub mod dns;
 pub mod http;
 pub mod http_api;
 pub mod logging;
 pub mod mcp;
+pub mod media_session;
 pub mod mpd;
 pub mod net;
 mod setup;
 pub mod stream_server;
 pub mod ytdlp;
+#[cfg(target_os = "android")]
+pub mod ytdlp_bridge;
 pub mod ytdlp_setup;
 
 // Maximizes the window when running as a non-steam app in steam
@@ -27,25 +31,55 @@ fn maximize_for_gamescope(app: &tauri::App) {
     }
 }
 
+// tauri-plugin-window-state, tauri-plugin-updater and tauri-plugin-process are only
+// pulled in as dependencies for desktop targets (see Cargo.toml), so registering them
+// has to be gated the same way or the Android/iOS build fails to resolve the crates.
+#[cfg(any(target_os = "macos", windows, target_os = "linux"))]
+fn add_desktop_only_plugins<R: tauri::Runtime>(
+    builder: tauri::Builder<R>,
+    is_flatpak: bool,
+) -> tauri::Builder<R> {
+    let builder = builder.plugin(tauri_plugin_window_state::Builder::default().build());
+
+    if is_flatpak {
+        builder
+    } else {
+        builder
+            .plugin(tauri_plugin_updater::Builder::new().build())
+            .plugin(tauri_plugin_process::init())
+    }
+}
+
+#[cfg(any(target_os = "android", target_os = "ios"))]
+fn add_desktop_only_plugins<R: tauri::Runtime>(
+    builder: tauri::Builder<R>,
+    _is_flatpak: bool,
+) -> tauri::Builder<R> {
+    builder
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let is_flatpak = std::env::var("FLATPAK_ID").is_ok();
 
-    let mut builder = tauri::Builder::default()
+    let builder = tauri::Builder::default()
         .plugin(tauri_plugin_os::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_upload::init())
-        .plugin(tauri_plugin_window_state::Builder::default().build())
         .plugin(setup::log_plugin());
 
-    if !is_flatpak {
-        builder = builder
-            .plugin(tauri_plugin_updater::Builder::new().build())
-            .plugin(tauri_plugin_process::init());
-    }
+    let builder = add_desktop_only_plugins(builder, is_flatpak);
+
+    // Bridges the yt-dlp commands to the embedded Python runtime on Android.
+    #[cfg(target_os = "android")]
+    let builder = builder.plugin(ytdlp_bridge::init());
+
+    // Registers the native media-session/foreground-service plugin on Android.
+    #[cfg(target_os = "android")]
+    let builder = builder.plugin(media_session::init());
 
     builder
         .invoke_handler(tauri::generate_handler![
@@ -58,6 +92,8 @@ pub fn run() {
             ytdlp::ytdlp_get_stream,
             ytdlp::ytdlp_get_playlist,
             logging::get_startup_logs,
+            media_session::media_session_update,
+            media_session::media_session_clear,
             mcp::mcp_start,
             mcp::mcp_stop,
             http_api::http_api_start,

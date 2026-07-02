@@ -26,6 +26,7 @@ export function TextHeader<T extends Track>({
     <th
       role="columnheader"
       className={cn('px-2 text-left', { 'cursor-pointer': canSort })}
+      style={{ width: `${context.column.getSize()}px` }}
       onClick={onClick}
     >
       <span className="flex items-center">

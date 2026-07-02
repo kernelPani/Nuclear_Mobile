@@ -65,6 +65,7 @@ export const CardsRow: FC<CardsRowProps> = ({
             data-testid="cards-row-filter"
             size="sm"
             tone="secondary"
+            className="hidden sm:flex"
             placeholder={labels.filterPlaceholder}
             value={filterText}
             onChange={(event) => setFilterText(event.target.value)}
@@ -79,7 +80,8 @@ export const CardsRow: FC<CardsRowProps> = ({
               </button>
             }
           />
-          <div className="flex items-center gap-2">
+          {/* Arrows are redundant on touch (swipe to scroll); hide on mobile. */}
+          <div className="hidden items-center gap-2 sm:flex">
             <Button
               data-testid="cards-row-scroll-left"
               size="icon"

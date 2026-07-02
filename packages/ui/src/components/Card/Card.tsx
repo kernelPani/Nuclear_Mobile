@@ -29,7 +29,7 @@ export const Card: FC<CardProps> = ({
     data-testid="card"
     size="flexible"
     className={cn(
-      'flex w-42 flex-col items-stretch gap-2 p-2 text-left',
+      'flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42',
       className,
     )}
     onClick={onClick}

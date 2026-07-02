@@ -1,10 +1,14 @@
 use log::{debug, error};
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 use std::process::{Command, Stdio};
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 use std::sync::RwLock;
 use tauri::command;
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 static YTDLP_PATH: RwLock<Option<String>> = RwLock::new(None);
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 pub fn set_ytdlp_path(path: String) {
     if let Ok(mut guard) = YTDLP_PATH.write() {
         debug!("[yt-dlp] Binary path set to: {}", path);
@@ -12,6 +16,7 @@ pub fn set_ytdlp_path(path: String) {
     }
 }
 
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 fn get_ytdlp_path() -> Result<String, String> {
     match YTDLP_PATH.read() {
         Ok(guard) => match guard.as_ref() {
@@ -83,6 +88,8 @@ struct YtdlpJson {
     channel: Option<String>,
 }
 
+// Desktop: run the downloaded yt-dlp binary as a child process.
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
 fn run_ytdlp(args: &[&str]) -> Result<String, String> {
     let program = get_ytdlp_path()?;
     let mut cmd = Command::new(&program);
@@ -107,6 +114,12 @@ fn run_ytdlp(args: &[&str]) -> Result<String, String> {
     }
 
     Ok(String::from_utf8_lossy(&output.stdout).into_owned())
+}
+
+// Android: forward the same argv to the embedded Python yt-dlp via Kotlin.
+#[cfg(target_os = "android")]
+fn run_ytdlp(args: &[&str]) -> Result<String, String> {
+    crate::ytdlp_bridge::run(args)
 }
 
 fn parse_ndjson_entries(stdout: &str) -> Vec<YtdlpJson> {

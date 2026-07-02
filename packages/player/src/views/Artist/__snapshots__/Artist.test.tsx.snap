@@ -842,6 +842,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                   <th
                                     class="px-2 text-left cursor-pointer"
                                     role="columnheader"
+                                    style="width: 150px;"
                                   >
                                     <span
                                       class="flex items-center"
@@ -852,6 +853,7 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                                   <th
                                     class="px-2 text-left cursor-pointer"
                                     role="columnheader"
+                                    style="width: 640px;"
                                   >
                                     <span
                                       class="flex items-center"
@@ -1068,11 +1070,11 @@ exports[`Artist view > with bio provider > (Snapshot) renders the artist view 1`
                   </div>
                 </div>
                 <div
-                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pr-2 pb-4 mx-4"
+                  class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-2 pr-2 pb-4 sm:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] sm:gap-4 mx-4"
                   role="grid"
                 >
                   <button
-                    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                     data-headlessui-state=""
                     data-testid="card"
                     type="button"
@@ -1619,6 +1621,8 @@ exports[`Artist view > with bio provider > adds artist to favorites when clickin
   },
 ]
 `;
+
+exports[`Artist view > with bio provider > shows loading states for bio, top tracks, related artists, and albums 1`] = `<DocumentFragment />`;
 
 exports[`Artist view > with social stats provider > (Snapshot) renders the artist view with social stats 1`] = `
 <DocumentFragment>
@@ -2321,7 +2325,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         </svg>
                       </span>
                       <span
-                        class="font-heading text-lg font-extrabold"
+                        class="font-heading text-base font-extrabold sm:text-lg"
                       >
                         5.4M
                       </span>
@@ -2373,7 +2377,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         </svg>
                       </span>
                       <span
-                        class="font-heading text-lg font-extrabold"
+                        class="font-heading text-base font-extrabold sm:text-lg"
                       >
                         120
                       </span>
@@ -2418,7 +2422,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         </svg>
                       </span>
                       <span
-                        class="font-heading text-lg font-extrabold"
+                        class="font-heading text-base font-extrabold sm:text-lg"
                       >
                         340
                       </span>
@@ -2465,7 +2469,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                         </svg>
                       </span>
                       <span
-                        class="font-heading text-lg font-extrabold"
+                        class="font-heading text-base font-extrabold sm:text-lg"
                       >
                         22
                       </span>
@@ -2638,6 +2642,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                   <th
                                     class="px-2 text-left cursor-pointer"
                                     role="columnheader"
+                                    style="width: 150px;"
                                   >
                                     <span
                                       class="flex items-center"
@@ -2648,6 +2653,7 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                                   <th
                                     class="px-2 text-left cursor-pointer"
                                     role="columnheader"
+                                    style="width: 640px;"
                                   >
                                     <span
                                       class="flex items-center"
@@ -2847,11 +2853,11 @@ exports[`Artist view > with social stats provider > (Snapshot) renders the artis
                   </div>
                 </div>
                 <div
-                  class="grid grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-4 pb-4 px-4"
+                  class="grid grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-2 pb-4 sm:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] sm:gap-4 px-4"
                   role="grid"
                 >
                   <button
-                    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-42 flex-col items-stretch gap-2 p-2 text-left"
+                    class="cursor-pointer rounded-md whitespace-nowrap transition-all outline-none disabled:cursor-not-allowed disabled:opacity-50 text-foreground bg-primary border-border shadow-shadow hover:translate-x-shadow-x hover:translate-y-shadow-y border-(length:--border-width) hover:shadow-none h-auto flex w-28 flex-col items-stretch gap-2 p-2 text-left sm:w-42"
                     data-headlessui-state=""
                     data-testid="card"
                     type="button"

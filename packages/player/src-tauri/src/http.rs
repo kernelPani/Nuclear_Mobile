@@ -1,6 +1,6 @@
 use log::{debug, error, warn};
 use percent_encoding::percent_decode_str;
-use reqwest::{header::HeaderMap, header::HeaderName, header::HeaderValue, Client, Method};
+use reqwest::{header::HeaderMap, header::HeaderName, header::HeaderValue, Method};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::str::FromStr;
@@ -108,7 +108,7 @@ pub struct HttpResponse {
 
 #[command]
 pub async fn http_fetch(request: HttpRequest) -> Result<HttpResponse, String> {
-    let client = Client::builder()
+    let client = crate::dns::client_builder()
         .build()
         .map_err(|e| format!("Failed to create HTTP client: {}", e))?;
 

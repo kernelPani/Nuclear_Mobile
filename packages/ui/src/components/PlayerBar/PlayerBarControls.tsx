@@ -46,6 +46,9 @@ type PlayerBarControlsProps = {
   onDiscoveryToggle?: () => void;
   showDiscovery: boolean;
   className?: string;
+  // Narrow layouts (mobile mini player) don't have room for shuffle/repeat/
+  // discovery next to the now-playing info; compact keeps just prev/play/next.
+  compact?: boolean;
 };
 
 export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
@@ -62,21 +65,24 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
   onDiscoveryToggle,
   showDiscovery,
   className = '',
+  compact = false,
 }) => (
   <div className={cn('flex items-center justify-center gap-2', className)}>
-    <Tooltip
-      content={isShuffleActive ? labels?.shuffleOn : labels?.shuffleOff}
-      side="top"
-    >
-      <Button
-        size="icon"
-        variant={isShuffleActive ? 'default' : 'text'}
-        onClick={onShuffleToggle}
-        data-testid="player-shuffle-button"
+    {!compact && (
+      <Tooltip
+        content={isShuffleActive ? labels?.shuffleOn : labels?.shuffleOff}
+        side="top"
       >
-        <Shuffle size={16} />
-      </Button>
-    </Tooltip>
+        <Button
+          size="icon"
+          variant={isShuffleActive ? 'default' : 'text'}
+          onClick={onShuffleToggle}
+          data-testid="player-shuffle-button"
+        >
+          <Shuffle size={16} />
+        </Button>
+      </Tooltip>
+    )}
     <Button size="icon" variant="text" onClick={onPrevious}>
       <SkipBack size={16} />
     </Button>
@@ -90,18 +96,20 @@ export const PlayerBarControls: FC<PlayerBarControlsProps> = ({
     <Button size="icon" variant="text" onClick={onNext}>
       <SkipForward size={16} />
     </Button>
-    <Tooltip content={labels?.[REPEAT_LABEL_KEY[repeatMode]]} side="top">
-      <Button
-        size="icon"
-        variant={repeatMode !== 'off' ? 'default' : 'text'}
-        onClick={onRepeatToggle}
-        data-testid="player-repeat-button"
-      >
-        {repeatMode === 'one' && <Repeat1 size={16} />}
-        {repeatMode !== 'one' && <Repeat size={16} />}
-      </Button>
-    </Tooltip>
-    {showDiscovery && (
+    {!compact && (
+      <Tooltip content={labels?.[REPEAT_LABEL_KEY[repeatMode]]} side="top">
+        <Button
+          size="icon"
+          variant={repeatMode !== 'off' ? 'default' : 'text'}
+          onClick={onRepeatToggle}
+          data-testid="player-repeat-button"
+        >
+          {repeatMode === 'one' && <Repeat1 size={16} />}
+          {repeatMode !== 'one' && <Repeat size={16} />}
+        </Button>
+      </Tooltip>
+    )}
+    {!compact && showDiscovery && (
       <Tooltip
         content={isDiscoveryActive ? labels?.discoveryOn : labels?.discoveryOff}
         side="top"

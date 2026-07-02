@@ -1,6 +1,6 @@
 import { createContext, FC, ReactNode, useContext } from 'react';
 
-export type Platform = 'macos' | 'windows' | 'linux';
+export type Platform = 'macos' | 'windows' | 'linux' | 'android' | 'ios';
 
 const PlatformContext = createContext<Platform>('linux');
 
@@ -19,3 +19,9 @@ export const PlatformProvider: FC<PlatformProviderProps> = ({
 );
 
 export const usePlatform = (): Platform => useContext(PlatformContext);
+
+export const isMobilePlatform = (platform: Platform): boolean =>
+  platform === 'android' || platform === 'ios';
+
+export const useIsMobilePlatform = (): boolean =>
+  isMobilePlatform(usePlatform());

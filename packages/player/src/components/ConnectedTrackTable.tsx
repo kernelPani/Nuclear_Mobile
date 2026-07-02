@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import type { Track } from '@nuclearplayer/model';
 import {
@@ -9,6 +10,7 @@ import {
 
 import { useQueueActions } from '../hooks/useQueueActions';
 import { useTrackActions } from '../hooks/useTrackActions';
+import { useQueueStore } from '../stores/queueStore';
 import { ConnectedTrackContextMenu } from './ConnectedTrackContextMenu';
 
 type ConnectedTrackTableProps = Omit<
@@ -22,6 +24,9 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
   const { actions: externalActions, ...restProps } = props;
   const trackActions = useTrackActions();
   const queueActions = useQueueActions();
+  const nowPlayingTrackId = useQueueStore(
+    useShallow((state) => state.items[state.currentIndex]?.track.source.id),
+  );
 
   return (
     <TrackTable
@@ -48,6 +53,7 @@ export const ConnectedTrackTable: FC<ConnectedTrackTableProps> = (props) => {
       meta={{
         isTrackFavorite: trackActions.isFavorite,
         ContextMenuWrapper: ConnectedTrackContextMenu,
+        nowPlayingTrackId,
       }}
     />
   );

@@ -14,3 +14,6 @@ test-results
 flatpak/pnpm-sources.json
 flatpak/cargo-sources.json
 flatpak/.flatpak-cargo-generator.py
+# Local Claude Code settings
+.claude/
+/Gemini_Generated_Image_qibmx6qibmx6qibm.png

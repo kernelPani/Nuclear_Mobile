@@ -48,7 +48,7 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
   const trackCount = album.tracks?.length ?? 0;
 
   return (
-    <div className="border-border bg-primary shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row">
+    <div className="border-border bg-primary shadow-shadow relative mx-3 mt-3 flex flex-col gap-3 rounded-md border-(length:--border-width) p-3 sm:mx-6 sm:mt-6 sm:gap-6 sm:p-6 md:flex-row">
       <ConnectedFavoriteButton
         type="album"
         source={{ provider: providerId, id: albumId }}
@@ -60,16 +60,16 @@ export const AlbumHeader: FC<AlbumHeaderProps> = ({ providerId, albumId }) => {
         <img
           src={cover.url}
           alt={album.title}
-          className="border-border shadow-shadow h-60 w-60 rounded-md border-(length:--border-width) object-cover select-none"
+          className="border-border shadow-shadow h-36 w-36 rounded-md border-(length:--border-width) object-cover select-none sm:h-60 sm:w-60"
         />
       )}
 
       <div className="flex flex-1 flex-col gap-4">
         <div className="flex flex-col gap-2">
-          <h1 className="font-heading text-5xl font-extrabold tracking-tight">
+          <h1 className="font-heading text-2xl font-extrabold tracking-tight sm:text-5xl">
             {album.title}
           </h1>
-          <div className="text-text-secondary block text-lg">
+          <div className="text-text-secondary block text-base sm:text-lg">
             by{' '}
             {album.artists.map((artist, index) => (
               <span key={artist.name}>

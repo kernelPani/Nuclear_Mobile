@@ -1,11 +1,19 @@
-use log::{debug, error, info};
-use serde::{Deserialize, Serialize};
-use std::fs;
-use std::path::{Path, PathBuf};
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
-use tauri::{command, AppHandle, Manager};
+// The desktop flow downloads a prebuilt yt-dlp executable and runs it as a child
+// process. Android/iOS forbid executing dynamically downloaded native binaries, and
+// these desktop builds are glibc-linked anyway (Android is Bionic), so none of this
+// applies there. The real Android implementation (bundled Python + yt-dlp via
+// Chaquopy) lands separately; this stub keeps `ytdlp_ensure_installed` compiling and
+// failing loudly instead of silently until then.
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
+mod desktop {
+    use log::{debug, error, info};
+    use serde::{Deserialize, Serialize};
+    use std::fs;
+    use std::path::{Path, PathBuf};
+    use std::time::{Duration, SystemTime, UNIX_EPOCH};
+    use tauri::{command, AppHandle, Manager};
 
-const RELEASE_BASE_URL: &str =
+    const RELEASE_BASE_URL: &str =
     "https://github.com/yt-dlp/yt-dlp-nightly-builds/releases/latest/download";
 const UPDATE_CHECK_INTERVAL_SECS: u64 = 3600;
 
@@ -351,3 +359,23 @@ pub async fn ytdlp_ensure_installed(app_handle: AppHandle) -> Result<bool, Strin
 
     Ok(already_installed)
 }
+}
+
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
+pub use desktop::*;
+
+#[cfg(any(target_os = "android", target_os = "ios"))]
+mod mobile {
+    use tauri::{command, AppHandle};
+
+    #[command]
+    pub async fn ytdlp_ensure_installed(_app_handle: AppHandle) -> Result<bool, String> {
+        // yt-dlp ships inside the APK via Chaquopy (see ytdlp_bridge.rs); there is
+        // nothing to download. Report "already installed" so the streaming flow
+        // proceeds. `true` = was already present.
+        Ok(true)
+    }
+}
+
+#[cfg(any(target_os = "android", target_os = "ios"))]
+pub use mobile::*;

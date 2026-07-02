@@ -75,6 +75,8 @@ export type TrackTableProps<T extends Track = Track> = {
   meta?: {
     isTrackFavorite?: (track: T) => boolean;
     ContextMenuWrapper?: FC<ContextMenuWrapperProps<T>>;
+    // source.id of the track currently playing, used to highlight its row.
+    nowPlayingTrackId?: string;
   };
   rowHeight?: number;
   overscan?: number;

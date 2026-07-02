@@ -1,4 +1,7 @@
+import { platform } from '@tauri-apps/plugin-os';
 import React from 'react';
+
+import { isMobilePlatform, type Platform } from '@nuclearplayer/ui';
 
 import App from './App';
 import { initLogStream } from './hooks/useLogStream';
@@ -15,6 +18,7 @@ import {
 } from './services/languageService';
 import { loadMarketplaceThemes } from './services/marketplaceThemeDirService';
 import { initMcpHandler } from './services/mcp';
+import { initMediaSessionHandler } from './services/mediaSessionHandler';
 import { initMpdHandler } from './services/mpd';
 import { hydratePluginsFromRegistry } from './services/plugins/pluginBootstrap';
 import { ytdlpEnsureInstalled } from './services/tauri/commands';
@@ -43,6 +47,7 @@ export const initPlayerApp = async (
     .then(() => initHttpApiHandler())
     .then(() => initBridgeHandler())
     .then(() => initDiscordHandler())
+    .then(() => initMediaSessionHandler())
     .then(() => applyLanguageFromSettings())
     .then(() => initLanguageWatcher())
     .then(() => startAdvancedThemeWatcher())
@@ -51,7 +56,11 @@ export const initPlayerApp = async (
     .then(() => applyThemeFromSettingsIfAny())
     .then(() => {
       void hydratePluginsFromRegistry();
-      void useUpdaterStore.getState().checkForUpdate();
+      // The updater plugin is desktop-only (see Cargo.toml/lib.rs); calling it
+      // on mobile just logs a "plugin not found" error.
+      if (!isMobilePlatform(platform() as Platform)) {
+        void useUpdaterStore.getState().checkForUpdate();
+      }
       void ytdlpEnsureInstalled();
     });
 

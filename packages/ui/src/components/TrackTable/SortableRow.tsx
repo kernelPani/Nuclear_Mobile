@@ -10,6 +10,7 @@ type SortableRowProps<T extends Track = Track> = {
   row: Row<T>;
   itemId: string;
   isReorderable?: boolean;
+  isNowPlaying?: boolean;
   style?: React.CSSProperties;
 };
 
@@ -17,6 +18,7 @@ export function SortableRow<T extends Track = Track>({
   row,
   itemId,
   isReorderable = false,
+  isNowPlaying = false,
   style: externalStyle,
 }: SortableRowProps<T>) {
   const {
@@ -42,12 +44,15 @@ export function SortableRow<T extends Track = Track>({
       data-testid="track-row"
       ref={setNodeRef}
       style={style}
+      data-now-playing={isNowPlaying || undefined}
       className={cn(
         'border-border bg-background-secondary group border-b-(length:--border-width) select-none',
         {
           '': !isDragging,
           'z-50': isDragging,
           'cursor-grab': isReorderable,
+          // Highlight the currently playing track.
+          'bg-primary/40 text-foreground font-semibold': isNowPlaying,
         },
       )}
       {...attributes}

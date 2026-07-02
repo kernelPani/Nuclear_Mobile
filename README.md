@@ -13,6 +13,12 @@
 
 </div>
 
+> 📱 **This repository is an Android/mobile port of Nuclear.** It builds on the
+> original desktop app by [nukeop](https://github.com/nukeop) and adds a native
+> Android build (mobile UI, embedded yt-dlp via Chaquopy, native media controls).
+> See **[README_MOBILE.md](README_MOBILE.md)** for the port details and build
+> steps. The desktop app described below is unchanged.
+
 <div align="center">
 
   Nuclear is a free, open-source music player without ads or tracking. Search for any song or artist, build playlists, and start listening.<br>

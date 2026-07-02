@@ -15,10 +15,12 @@ import {
   Loader,
   Tabs,
   TabsItem,
+  useIsMobilePlatform,
   ViewShell,
 } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../components/ConnectedTrackTable';
+import { SearchBox } from '../../components/SearchBox';
 import { useActiveProvider } from '../../hooks/useActiveProvider';
 import { metadataHost } from '../../services/metadataHost';
 import { SearchEmptyState } from './SearchEmptyState';
@@ -117,6 +119,7 @@ const SearchContent: FC<{
 export const Search: FC = () => {
   const { t } = useTranslation(['search', 'common']);
   const { q } = useSearch({ from: '/search' });
+  const isMobile = useIsMobilePlatform();
 
   const provider = useActiveProvider('metadata') as
     | MetadataProvider
@@ -140,8 +143,13 @@ export const Search: FC = () => {
     <ViewShell
       data-testid="search-view"
       title={t('search:title')}
-      subtitle={`${t('search:query')}: "${q}"`}
+      subtitle={isMobile ? undefined : `${t('search:query')}: "${q}"`}
     >
+      {isMobile && (
+        <div className="mb-3">
+          <SearchBox className="h-11 w-full" initialQuery={q} />
+        </div>
+      )}
       <SearchContent
         provider={provider}
         isLoading={isLoading}

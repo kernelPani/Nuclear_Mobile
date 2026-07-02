@@ -1,10 +1,16 @@
-use std::sync::Mutex;
+// Discord's Rich Presence IPC socket only exists on desktop platforms, and the
+// discord-rich-presence crate is only a dependency there (see Cargo.toml). The
+// mobile stub below keeps the same command names/signatures so lib.rs and the
+// frontend don't need platform-specific branches.
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
+mod desktop {
+    use std::sync::Mutex;
 
-use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
-use serde::Deserialize;
-use tauri::{command, Manager, State};
+    use discord_rich_presence::{activity, DiscordIpc, DiscordIpcClient};
+    use serde::Deserialize;
+    use tauri::{command, Manager, State};
 
-const DISCORD_APP_ID: &str = "1038970224050962582";
+    const DISCORD_APP_ID: &str = "1038970224050962582";
 
 pub struct DiscordState {
     pub client: Mutex<Option<DiscordIpcClient>>,
@@ -141,3 +147,49 @@ pub fn discord_clear_activity(state: State<'_, DiscordState>) -> Result<bool, St
         Ok(())
     })
 }
+}
+
+#[cfg(not(any(target_os = "android", target_os = "ios")))]
+pub use desktop::*;
+
+#[cfg(any(target_os = "android", target_os = "ios"))]
+mod mobile {
+    use tauri::command;
+
+    #[derive(serde::Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    #[allow(dead_code)]
+    pub struct TrackPresence {
+        title: String,
+        artist: String,
+        album: Option<String>,
+        artwork_url: Option<String>,
+        start_timestamp: Option<i64>,
+        end_timestamp: Option<i64>,
+    }
+
+    pub fn init_discord(_app_handle: tauri::AppHandle) {}
+
+    #[command]
+    pub fn discord_connect() -> Result<(), String> {
+        Err("Discord Rich Presence is not available on this platform".into())
+    }
+
+    #[command]
+    pub fn discord_disconnect() -> Result<(), String> {
+        Ok(())
+    }
+
+    #[command]
+    pub fn discord_set_activity(_track: TrackPresence) -> Result<bool, String> {
+        Err("Discord Rich Presence is not available on this platform".into())
+    }
+
+    #[command]
+    pub fn discord_clear_activity() -> Result<bool, String> {
+        Ok(false)
+    }
+}
+
+#[cfg(any(target_os = "android", target_os = "ios"))]
+pub use mobile::*;

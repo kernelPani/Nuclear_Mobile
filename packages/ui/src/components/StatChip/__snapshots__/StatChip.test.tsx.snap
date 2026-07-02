@@ -13,7 +13,7 @@ exports[`StatChip > (Snapshot) renders with icon 1`] = `
       />
     </span>
     <span
-      class="font-heading text-lg font-extrabold"
+      class="font-heading text-base font-extrabold sm:text-lg"
     >
       42
     </span>
@@ -32,7 +32,7 @@ exports[`StatChip > (Snapshot) renders with value and label 1`] = `
     class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
   >
     <span
-      class="font-heading text-lg font-extrabold"
+      class="font-heading text-base font-extrabold sm:text-lg"
     >
       1952
     </span>

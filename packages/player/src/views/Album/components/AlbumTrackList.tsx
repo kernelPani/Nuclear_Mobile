@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 
 import { useTranslation } from '@nuclearplayer/i18n';
 import { ArtworkSet, Track, TrackRef } from '@nuclearplayer/model';
-import { Loader } from '@nuclearplayer/ui';
+import { Loader, useIsMobilePlatform } from '@nuclearplayer/ui';
 
 import { ConnectedTrackTable } from '../../../components/ConnectedTrackTable';
 import { useAlbumDetails } from '../hooks/useAlbumDetails';
@@ -25,6 +25,7 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   albumId,
 }) => {
   const { t } = useTranslation('album');
+  const isMobile = useIsMobilePlatform();
   const {
     data: album,
     isLoading,
@@ -63,8 +64,20 @@ export const AlbumTrackList: FC<AlbumTrackListProps> = ({
   return (
     <ConnectedTrackTable
       tracks={tracks}
-      features={{ filterable: false, playAll: true, addAllToQueue: true }}
-      display={{ displayDuration: albumHasDuration, displayThumbnail: false }}
+      features={{
+        filterable: false,
+        playAll: true,
+        addAllToQueue: true,
+        // On the narrow mobile table these extra columns/buttons squeeze the
+        // title column to nothing; drop them so the song title is readable.
+        favorites: !isMobile,
+      }}
+      display={{
+        displayDuration: albumHasDuration,
+        displayThumbnail: false,
+        displayArtist: !isMobile,
+        displayQueueControls: !isMobile,
+      }}
     />
   );
 };

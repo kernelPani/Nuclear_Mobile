@@ -54,18 +54,22 @@ export function useColumns<T extends Track = Track>(
             enableSorting: false,
           },
         ),
-      columnHelper.accessor((track) => track.artists[0].name, {
-        id: 'artist',
-        enableSorting: true,
-        header: (context) => (
-          <TextHeader context={context}>
-            {mergedLabels.headers.artistHeader}
-          </TextHeader>
-        ),
-        cell: TextCell,
-      }),
+      display?.displayArtist &&
+        columnHelper.accessor((track) => track.artists[0].name, {
+          id: 'artist',
+          enableSorting: true,
+          header: (context) => (
+            <TextHeader context={context}>
+              {mergedLabels.headers.artistHeader}
+            </TextHeader>
+          ),
+          cell: TextCell,
+        }),
       columnHelper.accessor((track) => track.title, {
         id: 'title',
+        // Give the title the lion's share of the row width so long song names
+        // stay readable (duration is deliberately narrow below).
+        size: 640,
         enableSorting: true,
         header: (context) => (
           <TextHeader context={context}>
@@ -88,6 +92,8 @@ export function useColumns<T extends Track = Track>(
       display?.displayDuration &&
         columnHelper.accessor((track) => formatTimeMillis(track.durationMs), {
           id: 'duration',
+          // Keep the duration column tight so the title gets the width.
+          size: 96,
           enableSorting: true,
           header: (context) => (
             <TextHeader context={context}>

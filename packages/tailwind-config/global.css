@@ -8,6 +8,17 @@
 @source '../ui';
 @source '../storybook';
 
+/* Belt-and-suspenders against horizontal overflow/pan on mobile webviews:
+   a single element wider than the viewport (long unbroken text, a fixed-size
+   row that doesn't wrap) can otherwise stretch html/body sideways instead of
+   being clipped, since 100vw is the initial viewport size and stays fixed
+   even when content around it overflows. */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 @theme {
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
@@ -51,6 +62,13 @@
   --shadow-darkNav: 4px 4px 0px 0px var(--dark-border);
   --spacing-shadow-x: var(--shadow-x);
   --spacing-shadow-y: var(--shadow-y);
+
+  /* Insets for the Android/iOS system status bar and gesture/nav bar, so fixed
+     chrome (top bar, bottom tab bar, mini player) never draws under them. */
+  --spacing-safe-top: env(safe-area-inset-top, 0px);
+  --spacing-safe-right: env(safe-area-inset-right, 0px);
+  --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --spacing-safe-left: env(safe-area-inset-left, 0px);
 }
 
 :root {

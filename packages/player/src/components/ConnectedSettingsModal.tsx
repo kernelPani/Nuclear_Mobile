@@ -73,6 +73,7 @@ export const ConnectedSettingsModal: FC = () => {
       tabs={tabs}
       activeTab={activeTab}
       onTabChange={(tabId) => setActiveTab(tabId as SettingsTab)}
+      title={t('title')}
       navFooter={
         <div className="flex flex-col items-center gap-2">
           <SocialLinks />

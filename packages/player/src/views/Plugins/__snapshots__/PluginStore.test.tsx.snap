@@ -441,10 +441,10 @@ exports[`Plugin Store > (Snapshot) renders the plugin store with plugins from th
           class="flex min-h-0 flex-1 flex-col overflow-hidden"
         >
           <div
-            class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-6 pt-6"
+            class="bg-background relative flex h-full min-h-0 w-full flex-1 flex-col items-start justify-start px-3 pt-3 sm:px-6 sm:pt-6"
           >
             <h1
-              class="mb-6 flex w-full flex-0 flex-row text-center text-3xl font-bold"
+              class="mb-3 flex w-full flex-0 flex-row text-center text-2xl font-bold sm:mb-6 sm:text-3xl"
               data-testid="title"
             >
               Plugins

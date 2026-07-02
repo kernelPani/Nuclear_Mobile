@@ -13,6 +13,10 @@ type DialogRootProps = PropsWithChildren<{
   initialFocus?: React.RefObject<HTMLElement | null>;
   className?: string;
   showCloseButton?: boolean;
+  // Full-bleed variant for mobile: the panel fills the viewport (minus safe-area
+  // insets) instead of floating centered with a margin. The default centered
+  // card layout is kept intact for desktop dialogs.
+  fullScreen?: boolean;
 }>;
 
 export const DialogRoot: FC<DialogRootProps> = ({
@@ -21,6 +25,7 @@ export const DialogRoot: FC<DialogRootProps> = ({
   initialFocus,
   className,
   showCloseButton = true,
+  fullScreen = false,
   children,
 }) => {
   return (
@@ -35,8 +40,14 @@ export const DialogRoot: FC<DialogRootProps> = ({
             className="relative z-50"
           >
             <DialogOverlayBackdrop />
-            <div className="fixed inset-0 flex items-center justify-center p-4">
+            <div
+              className={cn(
+                'fixed inset-0 flex items-center justify-center',
+                fullScreen ? 'p-0' : 'p-4',
+              )}
+            >
               <motion.div
+                className={fullScreen ? 'h-dvh w-screen' : undefined}
                 initial={{ opacity: 0, scale: 0.9, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 8 }}
@@ -49,7 +60,10 @@ export const DialogRoot: FC<DialogRootProps> = ({
               >
                 <DialogPanel
                   className={cn(
-                    'border-border bg-background shadow-shadow relative w-full max-w-md rounded-md border-(length:--border-width) p-6',
+                    'border-border bg-background shadow-shadow relative',
+                    fullScreen
+                      ? 'pt-safe-top pb-safe-bottom pl-safe-left pr-safe-right flex h-full w-full flex-col border-(length:--border-width)'
+                      : 'w-full max-w-md rounded-md border-(length:--border-width) p-6',
                     className,
                   )}
                 >

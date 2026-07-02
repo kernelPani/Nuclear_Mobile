@@ -1,5 +1,6 @@
 export * from './Badge';
 export * from './BottomBar';
+export * from './BottomTabBar';
 export * from './Box';
 export * from './Button';
 export * from './Card';
@@ -16,6 +17,7 @@ export * from './LogEntry';
 export * from './LogViewer';
 export * from './Loader';
 export * from './Mosaic';
+export * from './MobileShell';
 export * from './NuclearJam';
 export * from './PlayerBar';
 export * from './PlayerShell';

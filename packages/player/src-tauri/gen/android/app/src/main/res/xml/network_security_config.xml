@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      Android blocks cleartext (non-HTTPS) traffic by default on API 28+, and
+      that includes loopback. Nuclear proxies every audio stream through a local
+      Rust server at http://127.0.0.1:<port>/stream/... (see stream_server.rs) to
+      strip CORS restrictions, so the WebView must be allowed to hit loopback
+      over plain HTTP. This is scoped to localhost only - all other origins keep
+      the secure default (cleartext denied).
+    -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

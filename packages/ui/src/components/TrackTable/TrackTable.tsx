@@ -90,6 +90,7 @@ export function TrackTable<T extends Track = Track>({
       onRemove: actions?.onRemove,
       isTrackFavorite: meta?.isTrackFavorite,
       ContextMenuWrapper: meta?.ContextMenuWrapper,
+      nowPlayingTrackId: meta?.nowPlayingTrackId,
       favoriteLabel: mergedLabels.favorite,
       unfavoriteLabel: mergedLabels.unfavorite,
     },
@@ -179,6 +180,10 @@ export function TrackTable<T extends Track = Track>({
                     itemId={getItemId(row.original, row.index)}
                     style={{ height: rowHeight }}
                     isReorderable={isReorderable}
+                    isNowPlaying={
+                      meta?.nowPlayingTrackId != null &&
+                      row.original.source?.id === meta.nowPlayingTrackId
+                    }
                     data-index={virtual.index}
                   />
                 )}

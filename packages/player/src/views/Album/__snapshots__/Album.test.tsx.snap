@@ -590,7 +590,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                 style="scrollbar-width: none;"
               >
                 <div
-                  class="border-border bg-primary shadow-shadow relative mx-6 mt-6 flex flex-col gap-6 rounded-md border-(length:--border-width) p-6 md:flex-row"
+                  class="border-border bg-primary shadow-shadow relative mx-3 mt-3 flex flex-col gap-3 rounded-md border-(length:--border-width) p-3 sm:mx-6 sm:mt-6 sm:gap-6 sm:p-6 md:flex-row"
                 >
                   <button
                     aria-label="Add to favorites"
@@ -619,7 +619,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                   </button>
                   <img
                     alt="Prism"
-                    class="border-border shadow-shadow h-60 w-60 rounded-md border-(length:--border-width) object-cover select-none"
+                    class="border-border shadow-shadow h-36 w-36 rounded-md border-(length:--border-width) object-cover select-none sm:h-60 sm:w-60"
                     src="https://img/album-cover.jpg"
                   />
                   <div
@@ -629,12 +629,12 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                       class="flex flex-col gap-2"
                     >
                       <h1
-                        class="font-heading text-5xl font-extrabold tracking-tight"
+                        class="font-heading text-2xl font-extrabold tracking-tight sm:text-5xl"
                       >
                         Prism
                       </h1>
                       <div
-                        class="text-text-secondary block text-lg"
+                        class="text-text-secondary block text-base sm:text-lg"
                       >
                         by 
                         <span />
@@ -647,7 +647,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
                       >
                         <span
-                          class="font-heading text-lg font-extrabold"
+                          class="font-heading text-base font-extrabold sm:text-lg"
                         >
                           Folk, World, Country
                         </span>
@@ -661,7 +661,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
                       >
                         <span
-                          class="font-heading text-lg font-extrabold"
+                          class="font-heading text-base font-extrabold sm:text-lg"
                         >
                           2025
                         </span>
@@ -675,7 +675,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                         class="border-border bg-background shadow-shadow flex items-center gap-2 rounded-md border-(length:--border-width) px-2 py-1"
                       >
                         <span
-                          class="font-heading text-lg font-extrabold"
+                          class="font-heading text-base font-extrabold sm:text-lg"
                         >
                           2
                         </span>
@@ -689,7 +689,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                   </div>
                 </div>
                 <div
-                  class="h-full p-6"
+                  class="h-full p-3 sm:p-6"
                 >
                   <div
                     class="flex h-full flex-col"
@@ -799,6 +799,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                               <th
                                 class="px-2 text-left cursor-pointer"
                                 role="columnheader"
+                                style="width: 150px;"
                               >
                                 <span
                                   class="flex items-center"
@@ -809,6 +810,7 @@ exports[`Album view > (Snapshot) renders the album view 1`] = `
                               <th
                                 class="px-2 text-left cursor-pointer"
                                 role="columnheader"
+                                style="width: 640px;"
                               >
                                 <span
                                   class="flex items-center"

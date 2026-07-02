@@ -17,6 +17,7 @@ import {
   SidebarNavigation,
   SidebarNavigationItem,
   Toaster,
+  useIsMobilePlatform,
 } from '@nuclearplayer/ui';
 
 import { ConnectedPlayerBar } from '../components/ConnectedPlayerBar';
@@ -29,6 +30,7 @@ import { ConnectedTitleBar } from '../components/ConnectedTitleBar';
 import { ConnectedTopBar } from '../components/ConnectedTopBar';
 import { DevTools } from '../components/DevTools';
 import { FlatpakWarningBanner } from '../components/FlatpakWarningBanner';
+import { MobileRoot } from '../components/MobileRoot';
 import { SoundProvider } from '../components/SoundProvider';
 import { StreamResolver } from '../components/StreamResolver';
 import { GlobalShortcuts } from '../shortcuts';
@@ -36,7 +38,7 @@ import { useLayoutStore } from '../stores/layoutStore';
 import { useSettingsModalStore } from '../stores/settingsModalStore';
 import { useStartupStore } from '../stores/startupStore';
 
-const RootComponent = () => {
+const DesktopRootComponent = () => {
   const { t } = useTranslation('navigation');
   const { t: tPrefs } = useTranslation('preferences');
   const {
@@ -129,6 +131,11 @@ const RootComponent = () => {
       <DevTools />
     </PlayerShell>
   );
+};
+
+const RootComponent = () => {
+  const isMobile = useIsMobilePlatform();
+  return isMobile ? <MobileRoot /> : <DesktopRootComponent />;
 };
 
 export const Route = createRootRoute({
