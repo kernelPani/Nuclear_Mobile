@@ -38,11 +38,24 @@
 
 ## 📱 Screenshots
 
-> _Screenshots are added per release. Want to see it live? [Install it](#-installation-2-minutes-no-computer-needed) — it takes two minutes._
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" width="30%" alt="Dashboard with playlists and top artists">
+  &nbsp;
+  <img src="docs/screenshots/search.png" width="30%" alt="Search results with album art">
+  &nbsp;
+  <img src="docs/screenshots/album.png" width="30%" alt="Album view with track list">
+</p>
+<p align="center">
+  <img src="docs/screenshots/plugins.png" width="30%" alt="Installed plugins">
+  &nbsp;
+  <img src="docs/screenshots/preferences.png" width="30%" alt="Preferences">
+</p>
 
-<!-- SCREENSHOTS:START -->
-<!-- images added in docs/screenshots/ -->
-<!-- SCREENSHOTS:END -->
+**Native lock-screen & notification media controls — with album art and background playback:**
+
+<p align="center">
+  <img src="docs/screenshots/media-controls.png" width="66%" alt="Media controls on the Android notification shade">
+</p>
 
 ## ✅ Compatibility — which devices can run it?
 
