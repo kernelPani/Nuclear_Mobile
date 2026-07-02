@@ -1,0 +1,24 @@
+Nuclear Mobile is an independent, community Android port of Nuclear, the free and open-source music player by nukeop. It reuses Nuclear's React frontend and Rust backend and adds a native Android build. It is not official and not affiliated with the original project; all credit for Nuclear goes to nukeop and the upstream contributors.
+
+Search for any song or artist, browse artist and album pages, build playlists, and stream music — with no ads, no tracking, and no account required.
+
+Features:
+
+* Search and stream music from multiple sources
+* Mobile-first interface: bottom tab bar, persistent mini-player, touch-sized layouts, safe-area aware
+* Full plugin system with a built-in plugin store (install and run plugins just like on desktop)
+* Real YouTube playback powered by the genuine yt-dlp engine embedded inside the app
+* Native media controls on the lock screen and notification shade (play, pause, next, previous, seek, artwork)
+* Background playback that keeps playing and auto-advances the queue when the screen is off
+* Artist and album pages, queue management, favorites, playlists, and themes
+
+Compatibility:
+
+* Requires Android 7.0 (Nougat) or newer
+* 64-bit ARM devices only (arm64-v8a) — this covers virtually every mainstream phone from the last several years
+* Not compatible with 32-bit-only or Intel/x86 devices
+* Internet connection required (Nuclear streams music, it does not host it)
+
+Nuclear Mobile is a player and does not host any music. Streaming from third-party services may be subject to those services' terms; use it for personal, lawful listening.
+
+Licensed under AGPL-3.0-only, the same license as upstream Nuclear.

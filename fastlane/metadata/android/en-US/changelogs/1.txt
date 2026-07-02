@@ -1,0 +1,7 @@
+First Android release of the Nuclear mobile port.
+
+* Native Android build (arm64) with a mobile-first UI
+* Plugin store and plugins working
+* Real YouTube playback via embedded yt-dlp
+* Native lock-screen / notification media controls and background playback
+* Verified end-to-end on a physical device
